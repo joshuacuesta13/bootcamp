@@ -1,0 +1,6 @@
+[
+  {
+    "name": "hello-world",
+    "imageUri": "public.ecr.aws/e6x4f2d0/testrepo"
+  }
+]
