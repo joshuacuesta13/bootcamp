@@ -1,10 +1,18 @@
 pipeline {
     agent any
-
+    environment { 
+        DEPLOY_TO = 'production'
+    }
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hi World'
+        stage('Welcome Step') {
+            when { 
+                allOf { 
+                    branch 'master'; 
+                    environment name: 'DEPLOY_TO', value: 'production'
+                } 
+            }
+            steps { 
+                echo 'Welcome to LambdaTest'
             }
         }
     }
