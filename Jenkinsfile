@@ -9,7 +9,8 @@ pipeline {
             when { 
                 allOf { 
                     environment name: 'DEPLOY_TO', value: 'production'
-                    equals(actual: currentBuild.number, expected: 1)                } 
+                    equals(actual: currentBuild.number, expected: 1)
+                }
             }
             steps { 
                 echo 'Welcome to LambdaTest'
