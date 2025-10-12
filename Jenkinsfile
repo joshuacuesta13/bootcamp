@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Welcome Step') {
             when { 
-                allOf { 
+                anyOf { 
                     environment name: 'DEPLOY_TO', value: 'production'
                     equals(actual: currentBuild.number, expected: 1)
                 }
