@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE = "sample-app:latest"
+        CONTAINER = "sample-app"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE} ."
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                sh "docker rm -f ${CONTAINER} || true"
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh "docker run -d --name ${CONTAINER} -p 3000:3000 ${IMAGE}"
+            }
+        }
+    }
+}
